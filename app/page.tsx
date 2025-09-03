@@ -1,13 +1,18 @@
 "use client"
 
 import type React from "react"
-
+import dynamic from "next/dynamic"
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Send, User, Mic, Paperclip } from "lucide-react"
-import Dither from "@/components/Dither"
+
+// Dynamically import Dither with SSR disabled
+const Dither = dynamic(() => import("@/components/Dither"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-black" />
+})
 
 interface Message {
   id: string

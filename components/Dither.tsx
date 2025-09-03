@@ -1,7 +1,7 @@
 "use client"
 
 /* eslint-disable react/no-unknown-property */
-import { useRef, useEffect, forwardRef } from "react"
+import { useRef, useEffect, forwardRef, useState } from "react"
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber"
 import { EffectComposer, wrapEffect } from "@react-three/postprocessing"
 import { Effect } from "postprocessing"
@@ -311,11 +311,21 @@ export default function Dither({
   enableMouseInteraction = true,
   mouseRadius = 1,
 }: DitherProps) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <div className="w-full h-full bg-black" />
+  }
+
   return (
     <Canvas
       className="w-full h-full relative"
       camera={{ position: [0, 0, 6] }}
-      dpr={window.devicePixelRatio}
+      dpr={typeof window !== 'undefined' ? window.devicePixelRatio : 1}
       gl={{ antialias: true, preserveDrawingBuffer: true }}
     >
       <DitheredWaves
