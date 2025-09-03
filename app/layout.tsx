@@ -15,8 +15,8 @@ export const metadata: Metadata = {
       { url: '/images/bobbie-profile.png', sizes: '32x32', type: 'image/png' },
       { url: '/images/bobbie-profile.png', sizes: '16x16', type: 'image/png' },
     ],
-    shortcut: '/images/bobbie-logo.png',
-    apple: '/images/bobbie-logo.png',
+    shortcut: '/images/bobbie-profile.png',
+    apple: '/images/bobbie-profile.png',
   },
   openGraph: {
     title: 'Bobbie - Your AI Companion',
